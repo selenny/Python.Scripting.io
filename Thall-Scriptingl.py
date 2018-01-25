@@ -12,7 +12,7 @@ import shutil
 import os
 
 def checkFiles(src):
-    if lastFileUpdate == true:
+    if lastFileUpdate <86400:
         shutil.move(src + '/' + file, desc)
     else:
         print "No files were updated today"
@@ -20,8 +20,10 @@ def checkFiles(src):
 def main():
     src = 'C:\Users\webde\Desktop\FolderA'
     dest = 'C:\Users\webde\Desktop\FolderB'
-    print src
-    print dest
+    currentTime = time.time()
+    ModTime = currentTime - lastFileUpdate
+##    print currentTime
+##    print ModTime
     lastFileUpdate = os.path.getmtime(src, dest)
     print (lastFileUpdate ('Were moved to Folder B'))
     checkFiles(src)
