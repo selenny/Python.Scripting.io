@@ -1,3 +1,5 @@
+
+
 #!/user/bin/python
 # Python Ver:     2.7
 #
@@ -8,27 +10,29 @@
 # Tested OS:       This code was written and tested to work with Windows 10.
  
 
-import shutil
-import os
-
-def checkFiles(src):
-    if lastFileUpdate <86400:
-        shutil.move(src + '/' + file, desc)
-    else:
-        print "No files were updated today"
+import shutil, os, sys, time
 
 def main():
     src = 'C:\Users\webde\Desktop\FolderA'
     dest = 'C:\Users\webde\Desktop\FolderB'
-    currentTime = time.time()
-    ModTime = currentTime - lastFileUpdate
-##    print currentTime
-##    print ModTime
-    lastFileUpdate = os.path.getmtime(src, dest)
-    print (lastFileUpdate ('Were moved to Folder B'))
-    checkFiles(src)
+    lastFileUpdate = os.path.getmtime(sourceFile)
 
+listFile = os.listdir(src)
+for files in listFile:
+    if files.endswith(".txt"):
+        sourceFile = os.path.join(src + files)  #This checks for mod time
+    lastFileUpdate = os.path.getmtime(sourceFile)
+    print (lastFileUpdate)
 
+currentTime = time.time()
+modTime = currentTime - lastFileUpdate  #time difference between current time and mod time
 
-
+if modTime < 86400:
+    shutil.move(sourceFile, dest)
+    print (sourceFile + 'Was moved to FolderB')
+else:
+    print ("No files were updated today")
+                
+if __name__=='__main__':
+    main()
                
