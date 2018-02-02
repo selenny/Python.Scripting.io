@@ -14,12 +14,11 @@ import shutil, os, time
 
 def checkFileMove(src, dest):
     currentTime = time.time()
+    listFile = os.listdir(src)
     
-listFile = os.listdir(src)
-for files in listFile:
-    
-    if files.endswith(".txt"):
-        sourceFile = os.path.join(src + files)
+    for files in listFile:
+        if files.endswith(".txt"):
+            sourceFile = os.path.join(src + files)
         lastFileUpdate = os.path.getmtime(sourceFile)
         print (lastFileUpdate)
         modTime = currentTime - lastFileUpdate
